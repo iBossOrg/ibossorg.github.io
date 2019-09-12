@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  site:
+    image: jekyll/jekyll:${JEKYLL_VERSION:-latest}
+    command: jekyll server ${JEKYLL_OPTS- --watch --drafts --verbose}
+    environment:
+      PAGES_ENV: development
+    ports:
+      - 4000:4000
+    volumes:
+      - ./:/srv/jekyll
+      - vendor_bundle:/usr/local/bundle
+
+volumes:
+  vendor_bundle:
